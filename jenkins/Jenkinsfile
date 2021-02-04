@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/vogellacompany/saneclipse.git'
+
+                // Run Maven on a Unix agent.
+                sh "mvn clean verify"
+
+               
+            }
+
+            post {
+               
+                success {
+                    archiveArtifacts 'com.vogella.saneclipse.feature/target/*.jar'
+                }
+            }
+        }
+    }
+}
+
