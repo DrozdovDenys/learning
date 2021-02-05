@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+.console-output {
+    background-color: #111;
+    color: #eee;
+    }
     options { timestamps() }
 
     stages {
