@@ -1,10 +1,11 @@
 pipeline {
     agent any
 
-
-    options { timestamps() 
-     background-color: black
-     }
+.console-output {
+    background-color: #000000;
+    color: #eee;
+    }
+    options { timestamps() }
 
     stages {
         stage('Build') {
