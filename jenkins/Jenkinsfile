@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 .console-output {
-    background-color: #111;
+    background-color: black;
     color: #eee;
     }
     options { timestamps() }
