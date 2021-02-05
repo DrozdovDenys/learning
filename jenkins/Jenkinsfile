@@ -1,8 +1,10 @@
 pipeline {
     agent any
 
-
-    options { timestamps() }
+    options {
+        ansiColor('gnome-terminal');timestamps()
+    }
+    
 
     stages {
         stage('Build') {
