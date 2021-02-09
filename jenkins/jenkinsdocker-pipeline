@@ -15,12 +15,33 @@ pipeline {
                 dir("jenkins")  {
                 sh """
                       docker build -t denysdrozdov/jenkins:${BUILD_NUMBER} .
-                      docker tag denysdrozdov/jenkins:${BUILD_NUMBER} denysdrozdov/jenkins:latest"""
+                      docker tag denysdrozdov/jenkins:${BUILD_NUMBER} denysdrozdov/jenkins:latest
+                      docker login -u=denysdrozdov -p=dockerparol
+                      docker push denysdrozdov/jenkins:latest
+                      docker push denysdrozdov/jenkins:${BUILD_NUMBER}
+                
+                   """
                     
                 }
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
+
+           
+        }
+        stage('Push') {
+            steps {
+                sh """
+                      docker login -u=denysdrozdov -p=dockerparol
+                      docker push denysdrozdov/jenkins:latest
+                      docker push denysdrozdov/jenkins:${BUILD_NUMBER}
+                
+                   """
+                    
+                }
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+        
 
            
         }
